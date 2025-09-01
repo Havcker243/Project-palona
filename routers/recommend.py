@@ -1,18 +1,18 @@
-import json
+from fastapi import APIRouter
+from pydantic import BaseModel
+from utils.gemini import GeminiAgent
+from utils.product_catalog import load_catalog, filter_products
 
-def load_catalog(path="data/catalog.json"):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+router = APIRouter(prefix="/recommend", tags=["Recommend"])
+agent = GeminiAgent()
 
-def filter_products(catalog, query):
-    query_lower = query.lower()
-    results = []
+class RecommendInput(BaseModel):
+    message: str
 
-    for item in catalog:
-        title = item["title"].lower()
-        desc = item["description"].lower()
-        
-        if query_lower in title or query_lower in desc:
-            results.append(item)
-    
-    return results[:5]  # Return top 5 matches
+@router.post("/")
+async def recommend_products(data: RecommendInput):
+    # Use Gemini to extract intent
+    filters = agent.extract_product_intent(data.message)
+    catalog = load_catalog()
+    results = filter_products(catalog, filters)
+    return {"results": results}

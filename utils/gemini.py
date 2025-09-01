@@ -14,6 +14,22 @@ class GeminiAgent:
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model_name)
 
+    def extract_product_intent(self, user_input: str) -> dict:
+        prompt = f"""You are an AI shopping assistant. Extract the following structured fields from this customer query:
+        Query: "{user_input}"
+        Return in JSON with keys:
+        - category (string)
+        - features (comma-separated string)
+        - budget (number, or null if not mentioned)    
+        Just return the JSON, no explanation.   
+        """
+        try:
+            raw = self.chat(prompt)
+            import json
+            return json.loads(raw)
+        except Exception as e:
+            return {"category": "", "features": "", "budget": None}
+
     def chat(self, user_input: str, system_prompt: str = None) -> str:
         try:
             if system_prompt:
