@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "Red Hoodie",
+    "category": "Clothing",
+    "description": "A warm red hoodie perfect for winter sports.",
+    "price": 45.99,
+    "image": "https://example.com/images/red-hoodie.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Black Running Shoes",
+    "category": "Footwear",
+    "description": "Lightweight shoes designed for long-distance running.",
+    "price": 79.99,
+    "image": "https://example.com/images/black-shoes.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Smart Fitness Watch",
+    "category": "Wearables",
+    "description": "Tracks heart rate, steps, and sleep patterns.",
+    "price": 129.99,
+    "image": "https://example.com/images/watch.jpg"
+  }
+]
