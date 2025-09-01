@@ -29,6 +29,21 @@ class GeminiAgent:
             return json.loads(raw)
         except Exception as e:
             return {"category": "", "features": "", "budget": None}
+        
+    def describe_image(self, image_bytes: bytes) -> str:
+        """
+        Sends an image to Gemini and returns a description.
+        """
+        try:
+            import PIL.Image
+            from io import BytesIO
+            image = PIL.Image.open(BytesIO(image_bytes))
+            response = self.model.generate_content(
+                ["Describe this product for shopping intent.", image]
+            )
+            return response.text
+        except Exception as e:
+            return f"❌ Gemini image error: {str(e)}"
 
     def chat(self, user_input: str, system_prompt: str = None) -> str:
         try:

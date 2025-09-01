@@ -18,3 +18,10 @@ Thumbs.db
 
 # VSCode settings (optional)
 .vscode/
+
+# Node.js (frontend) dependencies and build
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.next/
+frontend/.cache/
