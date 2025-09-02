@@ -1,68 +1,186 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* Walcart Design System - Modern E-commerce with AI Focus */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* Core Colors */
+    --background: 0 0% 100%;
+    --foreground: 220 25% 15%;
+
+    /* Brand Colors - Purple/Blue Gradient Theme */
+    --primary: 262 80% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 262 70% 70%;
+    --primary-dark: 262 90% 40%;
+
+    /* Secondary Brand */
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 25% 15%;
+
+    /* AI Assistant Colors */
+    --ai-primary: 280 100% 65%;
+    --ai-secondary: 240 100% 70%;
+    --ai-accent: 320 85% 60%;
+
+    /* Success/Cart Colors */
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning/Offers */
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 25% 15%;
+
+    /* Cards and Surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+    --card-hover: 220 15% 98%;
+
+    /* Interactive Elements */
+    --accent: 262 50% 97%;
+    --accent-foreground: 262 80% 55%;
+
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 15% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Form Elements */
+    --border: 220 15% 90%;
+    --input: 220 15% 94%;
+    --ring: 262 80% 55%;
+
+    /* Layout */
+    --radius: 0.75rem;
+    --header-height: 4rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--ai-primary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--ai-secondary)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(220 25% 15% / 0.1), 0 2px 4px -1px hsl(220 25% 15% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(220 25% 15% / 0.1), 0 4px 6px -2px hsl(220 25% 15% / 0.05);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+
+    /* Transitions */
+    --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --background: 220 25% 6%;
+    --foreground: 220 15% 95%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 220 15% 95%;
+    --card-hover: 220 25% 10%;
+
+    --primary: 262 80% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 262 70% 75%;
+    --primary-dark: 262 90% 45%;
+
+    --secondary: 220 25% 12%;
+    --secondary-foreground: 220 15% 85%;
+
+    --ai-primary: 280 100% 70%;
+    --ai-secondary: 240 100% 75%;
+    --ai-accent: 320 85% 65%;
+
+    --success: 142 76% 50%;
+    --warning: 38 92% 60%;
+
+    --accent: 220 25% 15%;
+    --accent-foreground: 262 80% 60%;
+
+    --muted: 220 25% 12%;
+    --muted-foreground: 220 15% 60%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 25% 15%;
+    --input: 220 25% 12%;
+    --ring: 262 80% 60%;
+
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.4);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Component Styles */
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-ai-primary bg-clip-text text-transparent;
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-base {
+    transition: var(--transition-base);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Product grid responsive */
+  .product-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  /* Chat message animations */
+  .message-appear {
+    animation: messageAppear 0.3s ease-out;
+  }
+
+  @keyframes messageAppear {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover animations */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
   }
 }
